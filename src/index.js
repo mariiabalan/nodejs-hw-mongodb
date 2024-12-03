@@ -1,3 +1,3 @@
-const message = "Hello world";
+const setupServer = require('./server');
 
-console.log(message);
+setupServer();
