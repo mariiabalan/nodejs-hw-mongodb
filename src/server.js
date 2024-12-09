@@ -20,17 +20,14 @@ export const setupServer = () => {
     }),
   );
 
-  // Basic route
   app.get('/', async (req, res) => {
     res.status(200).json({
       message: 'Hello! This is my DataBase',
     });
   });
 
-  // Use the contactsRouter for any route starting with /api/contacts
-  app.use('/api/contacts', contactsRouter);
+  app.use('/contacts', contactsRouter);
 
-  // Error handling middleware
   app.use((err, req, res, next) => {
     res.status(500).json({
       message: 'Something went wrong',
@@ -38,14 +35,12 @@ export const setupServer = () => {
     });
   });
 
-  // Catch-all route for undefined paths
   app.use('*', (req, res, next) => {
     res.status(404).json({
       message: 'Not found',
     });
   });
 
-  // Start the server
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
